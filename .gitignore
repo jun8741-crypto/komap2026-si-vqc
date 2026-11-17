@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+results/
+.codex-flow/
+.pytest_cache/
+.omc/
+.omx/

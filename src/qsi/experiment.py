@@ -87,7 +87,7 @@ def verdict(rows, a_key, b_key) -> dict:
     elif significant:
         ending = f"{a_key if mean > 0 else b_key}가 높음"
     else:
-        ending = "시드 흔들림과 구별되지 않음"
+        ending = "시드 간 변동과 구별되지 않음"
     noise_text = "—" if np.isnan(noise) else f"{noise:.2f}"
     text = f"{a_key} − {b_key}: 평균 {mean:+.2f} (차이의 시드 표준편차 {noise_text}) → {ending}"
     return dict(a=a_key, b=b_key, diffs=diffs.tolist(), mean=mean, noise=noise,

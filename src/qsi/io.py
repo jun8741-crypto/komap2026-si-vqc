@@ -12,7 +12,7 @@ def load_data(path=config.DATA_PATH) -> pd.DataFrame:
 
 
 def split_by_alloy(df):
-    """검증 합금이 학습에 섞이지 않도록 분할한다."""
+    """평가 합금이 학습에 섞이지 않도록 분할한다."""
     test = df[df.split == "valid"].reset_index(drop=True)
     train_part = df[df.split == "train"]
     test_alloys = set(test.alloy)
@@ -22,7 +22,7 @@ def split_by_alloy(df):
 
 
 def threshold_set(train):
-    """원 노트북과 같은 문턱값 선택 표본을 뽑는다."""
+    """원 노트북과 같은 임계값 선택 표본을 뽑는다."""
     return train.sample(config.THRESHOLD_SET_SIZE, random_state=config.THRESHOLD_SET_SEED)
 
 

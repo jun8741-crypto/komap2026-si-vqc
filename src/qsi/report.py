@@ -17,8 +17,8 @@ def _format(mean, std, digits=2):
 
 
 def _overlap_note(rows):
-    """문턱값 집합과 학습 데이터가 겹친 정도를 실제 실행 결과로 적는다."""
-    note = (f"문턱값은 학습 분할에서 무작위로 뽑은 Si 영역 {config.THRESHOLD_SET_SIZE:,}개로 고른다. "
+    """임계값 집합과 학습 데이터가 겹친 정도를 실제 실행 결과로 적는다."""
+    note = (f"임계값은 학습 분할에서 무작위로 뽑은 Si 영역 {config.THRESHOLD_SET_SIZE:,}개로 고른다. "
             "학습에 쓴 영역 중 이 집합과 겹친 수는 runs.csv의 thr_overlap에 있다")
     overlap = rows.groupby("key", sort=False).thr_overlap.max()
     parts = [f"{key} {int(value):,}개" for key, value in overlap.items() if value > 0]
@@ -26,7 +26,7 @@ def _overlap_note(rows):
 
 
 def _write_markdown(rows, summary, verdicts, test, outdir):
-    lines = ["# Si 영역 분류 비교", "", "| 조건 | 특징 수 | 학습 표본 | 걸음 | mIoU(%) | F1 | 정확도 | 학습 시간 평균(초) |",
+    lines = ["# Si 영역 분류 비교", "", "| 조건 | 특징 수 | 학습 표본 | 스텝 | mIoU(%) | F1 | 정확도 | 학습 시간 평균(초) |",
              "|---|---:|---:|---:|---:|---:|---:|---:|"]
     for row in summary.itertuples():
         lines.append(f"| {row.name} | {row.n_features} | {row.n_train} | {row.steps if row.steps else '—'} | "

@@ -113,7 +113,7 @@ class VQCModel:
         return linear.weight.detach().cpu().numpy().reshape(-1).copy(), float(linear.bias.detach().item())
 
     def predict_proba_shots(self, df, shots, seed):
-        """유한 샷으로 얻은 기댓값을 같은 머리로 판정한다."""
+        """유한 샷으로 얻은 기댓값을 같은 머리로 예측한다."""
         weights = torch.tensor(self.circuit_weights(), dtype=torch.float64)
         coef, bias = self.head()
         results = []

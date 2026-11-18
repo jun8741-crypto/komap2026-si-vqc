@@ -33,6 +33,6 @@ def evaluate(df, pred):
 
 
 def pick_threshold(df, prob, grid=config.THRESHOLD_GRID):
-    """최대 mIoU의 첫 문턱값을 고른다."""
+    """최대 mIoU의 첫 임계값을 고른다."""
     values = [pixel_iou(df, np.asarray(prob) >= t)["miou"] for t in grid]
     return float(grid[np.argmax(values)])
